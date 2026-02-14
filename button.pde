@@ -1,19 +1,12 @@
 class Btn{
 
   float cenX;
-  float lefX;
-  float rigX;
-
   float cenY;
-  float uppY;
-  float dowY;
-
   float sizH;
   float sizW;
-
   int radi;
-
   int clr;
+  String descTx = "";
 
   Btn(float cenY, float cenX, float sizH, float sizW, int radi){
     
@@ -22,11 +15,6 @@ class Btn{
     this.sizH = sizH;
     this.sizW = sizW;
     this.radi = radi;
-
-    lefX = cenX-sizW/2;
-    rigX = cenX+sizW/2;
-    uppY = cenY-sizH/2;
-    dowY = cenY+sizH/2;
   }
 
   void disp(){
@@ -42,15 +30,19 @@ class Btn{
     this.clr = hexa;
   }
 
-  void setPos(int y, int x){
+  void setPos(float y, float x){
     cenY = y;
     cenX = x;
   }
 
+  void setDesc(String desc){
+    descTx = desc;
+  }
+
   boolean chckOver(){
     return (
-      lefX <= mouseX && mouseX <= rigX &&
-      uppY <= mouseY && mouseY <= dowY
+      cenX-sizW/2<= mouseX && mouseX <= cenX+sizW/2 &&
+      cenY-sizH/2 <= mouseY && mouseY <= cenY+sizH/2
     );
   }
 }

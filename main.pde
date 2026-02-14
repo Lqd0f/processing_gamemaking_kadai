@@ -11,6 +11,7 @@ PFont allowJp;
 Btn startBtn = new Btn(WIN_H/12*3, WIN_W/12*2, WIN_H/12, WIN_W/12*2, 0);
 Btn modeBtn = new Btn(WIN_H/12*6, WIN_W/12*2, WIN_H/12, WIN_W/12*2, 0);
 Btn bgBtn = new Btn(WIN_H/12*9, WIN_W/12*2, WIN_H/12, WIN_W/12*2, 0);
+Btn titleBtn = new Btn(-WIN_H*100, WIN_W/12*2, WIN_H/12, WIN_W/12*2, 0);
 Game gameIns = new Game(GAME_ROUND);
 
 void setup(){
@@ -24,6 +25,11 @@ void setup(){
   titleLogo = loadImage("./img/greatTitleLogo.png");
   allowJp = loadFont("./data/yuGothUI_sb.vlw");
   textFont(allowJp);
+
+  startBtn.setCo(#AC0000);
+  modeBtn.setCo(#00AC00);
+  bgBtn.setCo(#0000AC);
+  titleBtn.setCo(#ACAC00);
 }
 
 void draw(){
@@ -32,31 +38,32 @@ void draw(){
   if(0 < bgDly){bgDly--;}
 
   if(startBtn.chckOver()){
-    startBtn.setCo(#ACFFAC);
+    startBtn.setCo(#FFACAC);
     if(mousePressed){
       runningGame = true; 
     }
   }else{
-    startBtn.setCo(#066606);
+    startBtn.setCo(#AC0000);
   }
 
   if(modeBtn.chckOver()){
-    modeBtn.setCo(#ACACFF);
-    if(mousePressed){
-
+    modeBtn.setCo(#ACFFAC);
+    if(mousePressed && bgDly == 0){
+      //visualVal ^= 1;
+      //bgDly = 12;
     }
   }else{
-    modeBtn.setCo(#066606);
+    modeBtn.setCo(#00AC00);
   }
 
    if(bgBtn.chckOver()){
-     bgBtn.setCo(#ACFFFF);
+     bgBtn.setCo(#ACACFF);
      if(mousePressed && bgDly == 0){
        bg ^= 1;
        bgDly = 12;
      }
    }else{
-     bgBtn.setCo(#066606);
+     bgBtn.setCo(#0000AC);
    }
 
   background(bg==-1? blk:whi);
