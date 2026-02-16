@@ -26,6 +26,11 @@ void gameScreen(){
   titleBtn.disp();
 
   background(bg==-1? c.blk:c.whi);
+
+  for(int i = 0;i < NUM_OF_KOALA;i++){
+    koalas.get(i).disp();
+  }
+
   bgBtn.disp();
   titleBtn.disp();
   modeBtn.disp();
@@ -33,6 +38,7 @@ void gameScreen(){
 
 void dispTtlLogo(){
 
+  noTint();
   image(titleLogo
         , WIN_W/12*8
         , WIN_H/12*6
