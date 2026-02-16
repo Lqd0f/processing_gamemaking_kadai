@@ -11,9 +11,8 @@ class Btn{
   String descTx = "";
 
   Btn(){
-    cenX = 0;
   }
-  
+
   Btn(float cenY, float cenX, float sizH, float sizW, int radi){
     
     this.cenX = cenX;
@@ -63,19 +62,42 @@ class Btn{
 
 void mousePressed(){
 
-  if(startBtn.chckOver()){
+  if(mode == 0 && startBtn.chckOver()){
     mode = 1;
   }
 
-  if(bgBtn.chckOver()){
-    bg ^= -1;
+  if(mode == 1 && bgBtn.chckOver()){
+    bg ^= 1;
   }
 
-  if(titleBtn.chckOver()){
+  if(mode == 1 && visBtn.chckOver()){
+    visu ^= 1;
+  }
+
+  if(mode == 1 && titleBtn.chckOver()){
     titleBtn.dsap();
-    modeBtn.setPos(WIN_H/12*6, WIN_W/12*2);
-    bgBtn.setPos(WIN_H/12*9, WIN_W/12*2);
+    visBtn.setPos(WIN_H/13*6, WIN_W/13*2);
+    bgBtn.setPos(WIN_H/13*9, WIN_W/13*2);
 
     done = GAME_ROUND;
+  }
+
+  for(int i = 0;i < NUM_OF_KOALA;i++){
+    if(mode == 1 && koalas.get(i).chckOver()){
+      String rslt;
+      if(i == correctAns){
+        rslt = "Correct!";
+        fill(#60CC90);
+        score++;
+      }else{
+        rslt = "Wrong...";
+        fill(#DC3036);
+      }
+      textSize(72);
+      text(rslt, WIN_W/13*6.5, WIN_H/13*6.5);
+      done++;
+      waiting = false;
+      break;
+    }
   }
 }
