@@ -20,8 +20,9 @@ void initButtons(){
 
 void initLoads(){
 
-  koalaFace = loadImage("./img/koala_face.png");  
-  titleLogo = loadImage("./img/greatTitleLogo.png");
+  koalaGood = loadImage("./img/koala_good.png");  
+  koalaOhno = loadImage("./img/koala_ohno.png");  
+  titleLogo = loadImage("./img/great_title_logo.png");
   koalaSil = loadImage("./img/koala_shiruetto.png");
   allowJp = loadFont("./data/yuGothUI_sb.vlw");
 }
@@ -40,4 +41,9 @@ void initKoalas(){
     float cenX = (WIN_W/13) * ((3 * (i%(NUM_OF_KOALA/2)+1) )-1);
     koalas.add(new ColorfulKoala(cenY, cenX, KOALA_SIZE, KOALA_SIZE)); 
   }
+}
+
+void initResult(){
+  
+  gameRslt = new Result();
 }

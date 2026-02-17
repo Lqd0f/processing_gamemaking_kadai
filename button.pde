@@ -64,6 +64,11 @@ void mousePressed(){
 
   if(mode == 0 && startBtn.chckOver()){
     mode = 1;
+    startBtn.dsap();
+
+    bgBtn.setPos(WIN_H/13*12, WIN_W/13*3);
+    visBtn.setPos(WIN_H/13*12, WIN_W/13*6.5);
+    titleBtn.setPos(WIN_H/13*12, WIN_W/13*10);
   }
 
   if(mode == 1 && bgBtn.chckOver()){
@@ -79,22 +84,32 @@ void mousePressed(){
     visBtn.setPos(WIN_H/13*6, WIN_W/13*2);
     bgBtn.setPos(WIN_H/13*9, WIN_W/13*2);
 
+    cntCorr = 0;
+    cntMiss = 0;
     done = GAME_ROUND;
   }
 
   for(int i = 0;i < NUM_OF_KOALA;i++){
     if(mode == 1 && koalas.get(i).chckOver()){
-      String rslt;
+      rsltBgn = millis();
       if(i == correctAns){
-        rslt = "Correct!";
-        fill(#60CC90);
-        score++;
+        gameRslt.setTx("Correct!");
+        gameRslt.setTxCo(#1EE24F);
+        if(cntCorr < 10){cntCorr++;}
+        else{cntMiss = max(cntMiss-1, 0);}
       }else{
-        rslt = "Wrong...";
-        fill(#DC3036);
+        gameRslt.setTx("Wrong...");
+        gameRslt.setTxCo(#B30B0E);
+        if(cntMiss < 10){cntMiss++;}
+        else{cntCorr = max(cntCorr-1, 0);}
       }
-      textSize(72);
-      text(rslt, WIN_W/13*6.5, WIN_H/13*6.5);
+
+      for(int ii = 0;ii < NUM_OF_KOALA;ii++){
+        if(ii != correctAns){koalas.get(ii).dsap();}
+      }
+
+      gameRslt.setBgCo(bg==1? c.blk:c.whi);
+      mode = 2;
       done++;
       waiting = false;
       break;

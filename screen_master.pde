@@ -4,9 +4,7 @@ void titleScreen(){
 
   titleBtn.dsap();
 
-
   startBtn.setPos(WIN_H/13*6, WIN_W/13*2);
-
 
   startBtn.disp();
 
@@ -15,20 +13,21 @@ void titleScreen(){
 
 void gameScreen(){
 
+  /*
   startBtn.dsap();
 
-  background(bg==1? c.blk:c.whi);
   bgBtn.setPos(WIN_H/13*12, WIN_W/13*3);
   bgBtn.disp();
   visBtn.setPos(WIN_H/13*12, WIN_W/13*6.5);
   visBtn.disp();
   titleBtn.setPos(WIN_H/13*12, WIN_W/13*10);
   titleBtn.disp();
+  */
 
-  background(bg==1? c.blk:c.whi);
+  //background(bg==1? c.blk:c.whi);
 
   for(int i = 0;i < NUM_OF_KOALA;i++){
-    koalas.get(i).disp();
+    if(mode == 1){koalas.get(i).disp();}
   }
 
   bgBtn.disp();
@@ -41,6 +40,17 @@ void gameScreen(){
     visR.disp();
     visG.disp();
     visB.disp();
+  }
+}
+
+void rsltScreen(){
+
+  for(int i = 0;i < NUM_OF_KOALA;i++){
+    if(i == correctAns){koalas.get(i).disp();}
+  }
+  gameRslt.disp();
+  if(2000 < millis()-rsltBgn){
+    mode = 1;
   }
 }
 
